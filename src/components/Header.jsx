@@ -1,3 +1,4 @@
+/* eslint-disable no-loop-func */
 import Button from './Button';
 import StyledHeader from './styles/StyledHeader.styled';
 
