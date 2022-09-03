@@ -1,36 +1,22 @@
-/* eslint-disable no-loop-func */
+import { useContext } from 'react';
+import buttonTypes from '../lib/buttonTypes';
+import { SortingContext } from '../SortingContext/SortingProvider';
 import Button from './Button';
 import StyledHeader from './styles/StyledHeader.styled';
 
 function Header() {
-  const clickHandler = () => {
-    // const i = 0;
-    for (let i = 0; i < 48; i += 1) {
-      // eslint-disable-next-line no-undef
-      const docBars = document.querySelectorAll('.bars');
-      const style1 = docBars[i].style;
-      const style2 = docBars[i + 1].style;
-      setTimeout(() => {
-        style1.backgroundColor = 'pink';
-        style2.backgroundColor = 'pink';
-        const temp = style1.height;
-        style1.height = style2.height;
-        style2.height = temp;
-      }, 1000 * i);
-
-      setTimeout(() => {
-        style1.backgroundColor = 'turquoise';
-        style2.backgroundColor = 'turquoise';
-      }, 1000 * (i + 1));
-    }
-  };
+  const { buttonActions } = useContext(SortingContext);
+  const {
+    BUBBLE_SORT, INSERTION_SORT, SELECTION_SORT, MERGE_SORT, RESET_ARRAY,
+  } = buttonTypes;
   return (
     <StyledHeader>
       <div>
-        <Button name="Bubble Sort" clickHandler={clickHandler} />
-        <Button name="Insertion Sort" />
-        <Button name="Selection Sort" />
-        <Button name="Merge Sort" />
+        <Button name={BUBBLE_SORT} clickHandler={() => buttonActions(BUBBLE_SORT)} />
+        <Button name={INSERTION_SORT} clickHandler={() => buttonActions(INSERTION_SORT)} />
+        <Button name={SELECTION_SORT} clickHandler={() => buttonActions(SELECTION_SORT)} />
+        <Button name={MERGE_SORT} clickHandler={() => buttonActions(MERGE_SORT)} />
+        <Button name={RESET_ARRAY} clickHandler={() => buttonActions(RESET_ARRAY)} />
       </div>
     </StyledHeader>
   );

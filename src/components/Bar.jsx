@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types';
 
 const style = {
-  width: '1em',
-  backgroundColor: 'turquoise',
+  padding: '1em',
+  background: 'linear-gradient(to left, #fdc830, #f37335)',
   margin: '0.5em',
+  border: '0.5px solid #26aaab',
+  boxShadow: '2px 2px 5px lightgrey',
 };
 
 function Bar({ height }) {
