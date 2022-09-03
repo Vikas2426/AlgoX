@@ -7,7 +7,12 @@ import Header from './components/Header';
 
 const heights = [];
 for (let i = 0; i < 50; i += 1) {
-  heights.push(`${Math.floor(Math.random() * 60)}vh`);
+  const newHeight = `${Math.floor(Math.random() * 60)}vh`;
+  if (newHeight && !heights.includes(newHeight)) {
+    heights.push(newHeight);
+  } else {
+    i -= 1;
+  }
 }
 function App() {
   const [bars, setBars] = useState(
