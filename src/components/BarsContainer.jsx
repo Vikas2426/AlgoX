@@ -1,8 +1,10 @@
+/* eslint-disable react/no-array-index-key */
 import { useContext } from 'react';
 import { SortingContext } from '../SortingContext/SortingProvider';
+import Bar from './Bar';
 
 function BarsContainer() {
-  const { bars } = useContext(SortingContext);
+  const { heights } = useContext(SortingContext);
   return (
     <div style={{
       display: 'flex',
@@ -15,7 +17,7 @@ function BarsContainer() {
       padding: '0.5em',
     }}
     >
-      {bars}
+      {heights.map((height, idx) => <Bar key={idx} height={`${height}vh`} />)}
     </div>
   );
 }

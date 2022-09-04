@@ -45,12 +45,12 @@ const animator = (animationArr, swapArr) => {
         displayComparison(style4.height, style3.height, true);
         swapInnerText(firstElem, secondElem);
       }
-    }, 1000 * i);
+    }, 100 * i);
 
     setTimeout(() => {
       style1.background = originalColor;
       style2.background = originalColor;
-    }, 1000 * (i + 1));
+    }, 100 * (i + 1));
   }
 };
 
