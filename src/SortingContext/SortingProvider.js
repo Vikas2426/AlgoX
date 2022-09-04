@@ -32,8 +32,7 @@ function SortingProvider({ children }) {
         bubbleSort(heights);
         break;
       case buttonTypes.MERGE_SORT:
-        mergeSort(heights);
-        console.log(heights);
+        mergeSort(heights, 0, heights.length - 1);
         break;
       case buttonTypes.INSERTION_SORT:
         insertionSort(heights);
@@ -45,8 +44,8 @@ function SortingProvider({ children }) {
         // eslint-disable-next-line no-undef
         window.location.reload();
         break;
-
       default:
+        break;
     }
   };
 

@@ -1,4 +1,11 @@
-/* eslint-disable import/no-cycle */
+import constants from './constants';
+
+const { animationColor, originalColor } = constants;
+/* eslint-disable no-undef */
+const displayComparison = (h1, h2) => {
+  const details = document.getElementById('details');
+  details.innerText = `Comparing: ${h1} and ${h2}\n`;
+};
 
 const animator = (animationArr, swapArr) => {
   for (let i = 0; i < animationArr.length; i += 1) {
@@ -6,7 +13,6 @@ const animator = (animationArr, swapArr) => {
     const secondIdx = animationArr[i][1];
     const swap1Idx = swapArr[i][0];
     const swap2Idx = swapArr[i][1];
-    // eslint-disable-next-line no-undef
     const docBars = document.getElementsByClassName('bars');
     const style1 = docBars[firstIdx].style;
     const style2 = docBars[secondIdx].style;
@@ -18,18 +24,20 @@ const animator = (animationArr, swapArr) => {
     }
 
     setTimeout(() => {
-      style1.background = 'linear-gradient(to top, #ff416c, #ff4b2b)';
-      style2.background = 'linear-gradient(to top, #ff416c, #ff4b2b)';
+      style1.background = animationColor;
+      style2.background = animationColor;
+      displayComparison(style1.height, style2.height);
       if (style3 && style4) {
-        const temp = style1.height;
-        style3.height = style2.height;
-        style4.height = temp;
+        const temp = style4.height;
+        style4.height = style3.height;
+        style3.height = temp;
+        displayComparison(style4.height, style3.height);
       }
     }, 100 * i);
 
     setTimeout(() => {
-      style1.background = 'linear-gradient(to left, #fdc830, #f37335)';
-      style2.background = 'linear-gradient(to left, #fdc830, #f37335)';
+      style1.background = originalColor;
+      style2.background = originalColor;
     }, 100 * (i + 1));
   }
 };

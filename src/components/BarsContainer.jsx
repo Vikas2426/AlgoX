@@ -9,7 +9,7 @@ function BarsContainer() {
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'flex-end',
-      height: '90vh',
+      height: '79vh',
       width: '100vw',
     }}
     >

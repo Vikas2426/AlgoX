@@ -29,37 +29,31 @@ const bubbleSort = (heights) => {
 };
 
 const merge = (heights, startIdx, mid, endIdx) => {
-  let i = startIdx;
   let j = mid + 1;
-  const result = [];
-  while (i < mid + 1 && j < endIdx) {
-    animationArr.push([i, j]);
-    if (heights[i] < heights[j]) {
-      result.push(heights[i]);
-      i += 1;
-    } else {
-      result.push(heights[j]);
+
+  while (startIdx <= mid && j <= endIdx) {
+    animationArr.push([j, startIdx]);
+    swapArr.push([-1, -1]);
+    if (heights[j] < heights[startIdx]) {
+      let j2 = j;
+      while (j2 > startIdx) {
+        animationArr.push([j2, j2 - 1]);
+        swap(heights, j2, j2 - 1);
+        j2 -= 1;
+      }
+      startIdx += 1;
+      mid += 1;
       j += 1;
+    } else {
+      startIdx += 1;
     }
-    swapArr.push([i, j]);
   }
-  while (i < heights.length) {
-    result.push(heights[i]);
-    swapArr.push([i, j]);
-    i += 1;
-  }
-  while (j < heights.length) {
-    swapArr.push([i, j]);
-    result.push(heights[j]);
-    j += 1;
-  }
-  heights.splice(startIdx, endIdx - startIdx + 1, ...result);
-  console.log(heights);
+  animator(animationArr, swapArr);
 };
 
-const mergeSort = (heights, startIdx = 0, endIdx = heights.length) => {
-  if (endIdx - startIdx) return;
-  const mid = parseInt(heights.length / 2, 10);
+const mergeSort = (heights, startIdx, endIdx = 100) => {
+  if (endIdx <= startIdx) return;
+  const mid = startIdx + parseInt((endIdx - startIdx) / 2, 10);
   mergeSort(heights, startIdx, mid);
   mergeSort(heights, mid + 1, endIdx);
   merge(heights, startIdx, mid, endIdx);
