@@ -1,16 +1,18 @@
 import PropTypes from 'prop-types';
 
 const style = {
-  padding: '1em',
-  background: 'linear-gradient(to left, #fdc830, #f37335)',
-  margin: '0.5em',
+  background: 'grey',
   border: '0.5px solid #26aaab',
   boxShadow: '2px 2px 5px lightgrey',
+  transition: 'height 0.5s ease-in',
+  fontSize: '0.8em',
 };
 
 function Bar({ height }) {
   return (
-    <span className="bars" style={{ ...style, height }} />
+    <span className="bars" style={{ ...style, height }}>
+      {height}
+    </span>
   );
 }
 

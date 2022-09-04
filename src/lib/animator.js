@@ -1,10 +1,19 @@
+/* eslint-disable no-param-reassign */
 import constants from './constants';
 
 const { animationColor, originalColor } = constants;
 /* eslint-disable no-undef */
-const displayComparison = (h1, h2) => {
+const displayComparison = (h1, h2, isSwapping = false) => {
   const details = document.getElementById('details');
-  details.innerText = `Comparing: ${h1} and ${h2}\n`;
+  details.innerText = isSwapping
+    ? `Comparing: ${h1} and ${h2}\n Swapping`
+    : `Comparing: ${h1} and ${h2}\n`;
+};
+
+const swapInnerText = (e1, e2) => {
+  const temp = e1.innerText;
+  e1.innerText = e2.innerText;
+  e2.innerText = temp;
 };
 
 const animator = (animationArr, swapArr) => {
@@ -14,6 +23,8 @@ const animator = (animationArr, swapArr) => {
     const swap1Idx = swapArr[i][0];
     const swap2Idx = swapArr[i][1];
     const docBars = document.getElementsByClassName('bars');
+    const firstElem = docBars[firstIdx];
+    const secondElem = docBars[secondIdx];
     const style1 = docBars[firstIdx].style;
     const style2 = docBars[secondIdx].style;
     let style3 = null;
@@ -31,14 +42,15 @@ const animator = (animationArr, swapArr) => {
         const temp = style4.height;
         style4.height = style3.height;
         style3.height = temp;
-        displayComparison(style4.height, style3.height);
+        displayComparison(style4.height, style3.height, true);
+        swapInnerText(firstElem, secondElem);
       }
-    }, 100 * i);
+    }, 1000 * i);
 
     setTimeout(() => {
       style1.background = originalColor;
       style2.background = originalColor;
-    }, 100 * (i + 1));
+    }, 1000 * (i + 1));
   }
 };
 

@@ -9,8 +9,10 @@ function BarsContainer() {
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'flex-end',
-      height: '79vh',
-      width: '100vw',
+      height: '70vh',
+      maxWidth: '100vw',
+      overflow: 'hidden',
+      padding: '0.5em',
     }}
     >
       {bars}

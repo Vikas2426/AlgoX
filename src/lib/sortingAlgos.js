@@ -16,10 +16,10 @@ const bubbleSort = (heights) => {
   animationArr = [];
   swapArr = [];
   for (let i = 0; i < heights.length - 1; i += 1) {
-    for (let j = i + 1; j < heights.length; j += 1) {
-      animationArr.push([i, j]);
-      if (heights[i] > heights[j]) {
-        swap(heights, i, j);
+    for (let j = 0; j < heights.length - i - 1; j += 1) {
+      animationArr.push([j, j + 1]);
+      if (heights[j] > heights[j + 1]) {
+        swap(heights, j, j + 1);
       } else {
         swapArr.push([-1, -1]);
       }
@@ -74,6 +74,7 @@ const insertionSort = (heights) => {
       j -= 1;
     }
   }
+
   animator(animationArr, swapArr);
 };
 
