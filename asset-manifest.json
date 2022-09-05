@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/AlgoX/static/css/main.4645ea06.css",
+    "main.js": "/AlgoX/static/js/main.a26f92bd.js",
+    "index.html": "/AlgoX/index.html",
+    "main.4645ea06.css.map": "/AlgoX/static/css/main.4645ea06.css.map",
+    "main.a26f92bd.js.map": "/AlgoX/static/js/main.a26f92bd.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4645ea06.css",
+    "static/js/main.a26f92bd.js"
+  ]
+}
