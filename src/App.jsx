@@ -1,5 +1,4 @@
 /* eslint-disable no-undef */
-/* eslint-disable no-loop-func */
 import './App.css';
 import BarsContainer from './components/BarsContainer';
 import Header from './components/Header';

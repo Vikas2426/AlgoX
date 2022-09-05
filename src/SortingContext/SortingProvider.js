@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
+/* eslint-disable no-undef */
 /* eslint-disable import/no-cycle */
 import React, { useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
@@ -5,55 +8,51 @@ import buttonTypes from '../lib/buttonTypes';
 import {
   bubbleSort, insertionSort, selectionSort, mergeSort,
 } from '../lib/sortingAlgos';
-import Bar from '../components/Bar';
+import animator from '../lib/animator';
 
 export const SortingContext = React.createContext();
 export const getHeights = () => {
   const heights = [];
-  for (let i = 0; i < 10; i += 1) {
-    const newHeight = Math.floor(Math.random() * 60);
-    if (newHeight && !heights.includes(newHeight)) {
-      heights.push(newHeight);
-    } else {
-      i -= 1;
-    }
+  const numberOfBars = window.innerWidth < 600 ? parseInt(window.innerWidth / 8, 10) : 70;
+  for (let i = 0; i < numberOfBars; i += 1) {
+    const newHeight = Math.floor((Math.random() * 50) + 10);
+    heights.push(newHeight);
   }
   return heights;
 };
-export const getBars = (heights) => heights.map((height) => <Bar key={height} height={`${height}vh`} />);
 
 function SortingProvider({ children }) {
-  const heights = getHeights();
-  const [bars, setBars] = useState(() => ([...getBars(heights)]));
-
+  const [heights, setHeights] = useState(getHeights);
+  const [delay, setDelay] = useState(1000);
   const buttonActions = (buttonType) => {
+    const animationArr = [];
+    const swapArr = [];
     switch (buttonType) {
       case buttonTypes.BUBBLE_SORT:
-        bubbleSort(heights);
+        bubbleSort(heights, animationArr, swapArr);
         break;
       case buttonTypes.MERGE_SORT:
-        mergeSort(heights);
-        console.log(heights);
+        mergeSort(heights, 0, heights.length - 1, animationArr, swapArr);
         break;
       case buttonTypes.INSERTION_SORT:
-        insertionSort(heights);
+        insertionSort(heights, animationArr, swapArr);
         break;
       case buttonTypes.SELECTION_SORT:
-        selectionSort(heights);
+        selectionSort(heights, animationArr, swapArr);
         break;
       case buttonTypes.RESET_ARRAY:
-        // eslint-disable-next-line no-undef
         window.location.reload();
         break;
-
       default:
+        break;
     }
+    animator(animationArr, swapArr, delay);
   };
 
   return (
     <SortingContext.Provider value={useMemo(() => ({
-      buttonActions, heights, bars, setBars,
-    }), [])}
+      buttonActions, heights, setDelay, delay,
+    }), [heights])}
     >
       {children}
     </SortingContext.Provider>

@@ -1,12 +1,14 @@
-/* eslint-disable import/no-cycle */
+/* eslint-disable no-undef */
+import constants from './constants';
 
-const animator = (animationArr, swapArr) => {
+const { animationColor, originalColor } = constants;
+
+const animator = (animationArr, swapArr, delay) => {
   for (let i = 0; i < animationArr.length; i += 1) {
     const firstIdx = animationArr[i][0];
     const secondIdx = animationArr[i][1];
     const swap1Idx = swapArr[i][0];
     const swap2Idx = swapArr[i][1];
-    // eslint-disable-next-line no-undef
     const docBars = document.getElementsByClassName('bars');
     const style1 = docBars[firstIdx].style;
     const style2 = docBars[secondIdx].style;
@@ -18,19 +20,19 @@ const animator = (animationArr, swapArr) => {
     }
 
     setTimeout(() => {
-      style1.background = 'linear-gradient(to top, #ff416c, #ff4b2b)';
-      style2.background = 'linear-gradient(to top, #ff416c, #ff4b2b)';
+      style1.background = animationColor;
+      style2.background = animationColor;
       if (style3 && style4) {
-        const temp = style1.height;
-        style3.height = style2.height;
-        style4.height = temp;
+        const temp = style4.height;
+        style4.height = style3.height;
+        style3.height = temp;
       }
-    }, 100 * i);
+    }, delay * i);
 
     setTimeout(() => {
-      style1.background = 'linear-gradient(to left, #fdc830, #f37335)';
-      style2.background = 'linear-gradient(to left, #fdc830, #f37335)';
-    }, 100 * (i + 1));
+      style1.background = originalColor;
+      style2.background = originalColor;
+    }, delay * (i + 1));
   }
 };
 

@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
+import constants from '../lib/constants';
 
 const style = {
-  padding: '1em',
-  background: 'linear-gradient(to left, #fdc830, #f37335)',
-  margin: '0.5em',
-  border: '0.5px solid #26aaab',
+  background: constants.originalColor,
   boxShadow: '2px 2px 5px lightgrey',
+  fontSize: '0.8em',
+  margin: '0px 2px',
+  padding: '2px',
 };
 
 function Bar({ height }) {
