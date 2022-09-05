@@ -4,7 +4,6 @@ import constants from '../lib/constants';
 const style = {
   background: constants.originalColor,
   boxShadow: '2px 2px 5px lightgrey',
-  transition: 'height 0.1s ease-in',
   fontSize: '0.8em',
   margin: '0px 2px',
   padding: '2px',
