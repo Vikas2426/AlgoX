@@ -23,7 +23,7 @@ export const getHeights = () => {
 
 function SortingProvider({ children }) {
   const [heights, setHeights] = useState(getHeights);
-  const [delay, setDelay] = useState(1000);
+  const [delay, setDelay] = useState(10);
   const buttonActions = (buttonType) => {
     const animationArr = [];
     const swapArr = [];
@@ -52,7 +52,7 @@ function SortingProvider({ children }) {
   return (
     <SortingContext.Provider value={useMemo(() => ({
       buttonActions, heights, setDelay, delay,
-    }), [heights])}
+    }), [heights, delay])}
     >
       {children}
     </SortingContext.Provider>
