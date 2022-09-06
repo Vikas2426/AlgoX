@@ -1,13 +1,18 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import buttonTypes from '../lib/buttonTypes';
 import { SortingContext } from '../SortingContext/SortingProvider';
 import Button from './Button';
 import StyledHeader from './styles/StyledHeader.styled';
 
 function Header() {
-  const { buttonActions, setDelay } = useContext(SortingContext);
-
+  const { buttonActions, setDelay, delay } = useContext(SortingContext);
+  const [shouldBeDisabled, setShouldBeDisabled] = useState(false);
+  const handleAlgoSelection = (event) => {
+    const buttonType = event.target.name;
+    setShouldBeDisabled(buttonType !== buttonTypes.RESET_ARRAY);
+    buttonActions(buttonType);
+  };
   return (
     <StyledHeader>
       <div>
@@ -15,22 +20,28 @@ function Header() {
           <Button
             key={buttonType}
             name={buttonType}
-            clickHandler={() => buttonActions(buttonType)}
+            disabled={buttonType !== buttonTypes.RESET_ARRAY && shouldBeDisabled}
+            clickHandler={handleAlgoSelection}
           />
         ))}
       </div>
-      <label htmlFor="delay" style={{ color: 'white' }}>
-        Speed
-      </label>
-      <input
-        type="range"
-        name="delay"
-        defaultValue={1000}
-        onChange={(event) => setDelay(1000 - event.target.value)}
-        min={0}
-        max={1000}
-        step={100}
-      />
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <label htmlFor="delay" style={{ color: 'white' }}>
+          Delay:
+          {delay}
+          ms
+        </label>
+        <input
+          type="range"
+          name="delay"
+          defaultValue={10}
+          onChange={(event) => setDelay(event.target.value)}
+          min={10}
+          max={1000}
+          step={100}
+          disabled={shouldBeDisabled}
+        />
+      </div>
     </StyledHeader>
   );
 }
