@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import constants from './constants';
 
-const { animationColor, originalColor } = constants;
+const { ANIMATION_COLOR, ORIGINAL_COLOR } = constants;
 
 const animator = (animationArr, swapArr, delay) => {
   for (let i = 0; i < animationArr.length; i += 1) {
@@ -20,18 +20,16 @@ const animator = (animationArr, swapArr, delay) => {
     }
 
     setTimeout(() => {
-      style1.background = animationColor;
-      style2.background = animationColor;
+      style1.background = ANIMATION_COLOR;
+      style2.background = ANIMATION_COLOR;
       if (style3 && style4) {
-        const temp = style4.height;
-        style4.height = style3.height;
-        style3.height = temp;
+        [style4.height, style3.height] = [style3.height, style4.height];
       }
     }, delay * i);
 
     setTimeout(() => {
-      style1.background = originalColor;
-      style2.background = originalColor;
+      style1.background = ORIGINAL_COLOR;
+      style2.background = ORIGINAL_COLOR;
     }, delay * (i + 1));
   }
 };

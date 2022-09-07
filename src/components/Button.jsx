@@ -19,7 +19,6 @@ Button.defaultProps = {
   clickHandler: () => {
     // default prop
   },
-  // disabled: false,
 };
 
 export default Button;
