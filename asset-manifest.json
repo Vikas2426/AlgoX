@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/AlgoX/static/css/main.4645ea06.css",
-    "main.js": "/AlgoX/static/js/main.92d7cbf7.js",
+    "main.js": "/AlgoX/static/js/main.f15c113c.js",
     "index.html": "/AlgoX/index.html",
     "main.4645ea06.css.map": "/AlgoX/static/css/main.4645ea06.css.map",
-    "main.92d7cbf7.js.map": "/AlgoX/static/js/main.92d7cbf7.js.map"
+    "main.f15c113c.js.map": "/AlgoX/static/js/main.f15c113c.js.map"
   },
   "entrypoints": [
     "static/css/main.4645ea06.css",
-    "static/js/main.92d7cbf7.js"
+    "static/js/main.f15c113c.js"
   ]
 }
